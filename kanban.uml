@@ -1,0 +1,51 @@
+@startuml
+
+class Project {
+    id: INTEGER
+    name STRING
+    lists Array<List>
+    createProject()
+    deleteProject()
+    updateProject()
+    readProject()
+    readAllProjects()
+
+}
+class List {
+    id: INTEGER
+    title: STRING
+    tasks Array<Task>
+    createList()
+    deleteList()
+    updateList()
+    readAllLists()
+
+}
+
+class Task {
+    id: INTEGER
+    name: STRING
+    description: STRING
+    users Array<User>
+    createTask()
+    deleteTask()
+    updateTask()
+    readAllTasks()
+    readTask()
+}
+
+class User {
+    id: INTEGER
+    name: STRING
+    avatar: STRING
+    createUser()
+    readUser()
+    readAllUsers()
+    updateUser()
+    DeleteUser()
+}
+Project--{List
+List--{Task
+
+Task--{User
+@enduml
