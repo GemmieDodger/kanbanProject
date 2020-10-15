@@ -20,7 +20,7 @@ const view = (state) => `
         <h1>Projects</h1>
        
         <ul>
-         ${state.projects.map(project => `<li>${project.text}</li>`).join("")} ${state.projects.map(project => {
+         ${state.projects.map(project => `<li>${project.text}<button></button></li>`).join("")} ${state.projects.map(project => {
             if (project.status === 0){
                 return `<button onclick="app.run('done', ${project.id})">✅</button>`
             } else {
@@ -64,6 +64,7 @@ const update = {
         state.projects.splice(project, 1)
         return state
     }
+   
 }
 
 

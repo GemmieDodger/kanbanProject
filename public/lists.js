@@ -22,7 +22,7 @@ class Task {
 }
 
 const state = {
-    tasks = [],
+    tasks : [],
     dragging: null
 }
 
@@ -40,8 +40,8 @@ const viewTask = task => {
 }
 
 
-const view = (state) => {
-     `<section id="${list.id}">
+const view = (state) => 
+     `<section>
         <h2>To do list</h2>
         <ul>
             ${state.tasks.map(viewTask).join("")}
@@ -52,14 +52,14 @@ const view = (state) => {
         </form>  
     </section>
 
-    <section id="${list.id}">
+    <section >
         <h2>Doing</h2>
         <ul>
             ${state.tasks.map(viewTask).join("")}
         </ul>
     </section>
 
-    <section id="${list.id}">
+    <section >
         <h2>Done</h2>
         <ul>
             ${state.tasks.map(viewTask).join("")}
@@ -68,7 +68,7 @@ const view = (state) => {
         <div class="deleteOnHover" ondragover="event.preventDefault()" ondrop="app.run('onDropDeleteInProcessTask', event)">Delete</div>  
     </section>
     `
-}
+
 
 const update = {
     add: async (state, form) => {
