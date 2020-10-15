@@ -18,6 +18,21 @@ const projects = [
     }
 ]
 
+const users = [
+    {
+        id: 1,
+        text: 'User Uno',
+        image: 'https://upload.wikimedia.org/wikipedia/commons/7/76/Boris_Johnson_official_portrait_%28cropped%29.jpg',
+        status: 0
+    },
+    {
+        id: 2,
+        text: 'User Dos',
+        image: 'https://cdn.collider.com/wp-content/uploads/2020/09/borat-movie-social.jpg',
+        status: 0
+    }
+]
+
 const lists = [
     {
         id: 1,
