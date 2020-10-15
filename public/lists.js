@@ -1,3 +1,4 @@
+  
 
 
 
@@ -51,14 +52,12 @@ const view = (state) =>
             <button class="addButton">Add</button>
         </form>  
     </section>
-
     <section >
         <h2>Doing</h2>
         <ul>
             ${state.tasks.map(viewTask).join("")}
         </ul>
     </section>
-
     <section >
         <h2>Done</h2>
         <ul>
