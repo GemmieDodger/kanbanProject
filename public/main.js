@@ -18,17 +18,7 @@ const viewProject = project => {
 const view = (state) => `
     <section>
         <h1>Projects</h1>
-    <header>Projects</header>
-    <div>
-    <form onsubmit="app.run('add', this);return false;">
-        <input name="project" placeholder="Make a new project" />
-        <button class="addBtn">Add</button>
-    </form>
-</div>
-</div>
-    <div class="row">
-    <div class="column">
-        <h1>project</h1>
+       
         <ul>
          ${state.projects.map(project => `<li>${project.text}</li>`).join("")} ${state.projects.map(project => {
             if (project.status === 0){
