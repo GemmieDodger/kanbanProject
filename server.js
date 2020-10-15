@@ -36,7 +36,7 @@ const lists = [
     }
 ]
 
-const tasks = [
+const toDoTasks = [
     {
         id:1,
         text: 'Complete this task or else',
@@ -44,24 +44,60 @@ const tasks = [
     },
     {
         id:2,
-        text: 'Delete this task',
+        text: 'Get on with this task',
+        status: 0
+    }
+]
+const doingTasks = [
+    {
+        id:3,
+        text: 'Getting through the tasks',
         status: 0
     },
     {
-        id:3,
-        text: "Don't complete this task",
+        id:4,
+        text: 'even further through the tasks',
+        status: 0
+    }
+]
+const doneTasks = [
+    {
+        id:5,
+        text: 'Completed task',
+        status: 0
+    },
+    {
+        id:6,
+        text: 'Delete this task',
         status: 0
     }
 ]
 
-app.get('/tasks', (req, res) => {
-    res.send(tasks)
+app.get('/toDoTasks', (req, res) => {
+    res.send(toDoTasks)
 })
 
-app.post('/tasks', (req, res) => {
+app.get('/doingTasks', (req, res) => {
+    res.send(doingTasks)
+})
+
+app.get('/doneTasks', (req, res) => {
+    res.send(doneTasks)
+})
+
+app.post('/toDoTasks', (req, res) => {
     tasks.push(req.body)
     res.send()
 })
+app.post('/doingTasks', (req, res) => {
+    tasks.push(req.body)
+    res.send()
+})
+app.post('/doneTasks', (req, res) => {
+    tasks.push(req.body)
+    res.send()
+})
+
 
 app.get('/lists', (req, res) => {
     res.send(lists)
