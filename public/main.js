@@ -12,7 +12,6 @@ const view = (state) => `
     </form>
 </div>
 </div>
-
     <div class="row">
     <div class="column">
         <h1>project</h1>

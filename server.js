@@ -54,6 +54,15 @@ const tasks = [
     }
 ]
 
+app.get('/tasks', (req, res) => {
+    res.send(tasks)
+})
+
+app.post('/tasks', (req, res) => {
+    tasks.push(req.body)
+    res.send()
+})
+
 app.get('/lists', (req, res) => {
     res.send(lists)
 })
