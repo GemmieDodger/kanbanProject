@@ -1,4 +1,3 @@
-  
 
 
 
@@ -26,6 +25,7 @@ const state = {
     toDoTasks : [],
     doingTasks : [],
     doneTasks : [],
+    users: [],
     dragging: null
 }
 
@@ -78,12 +78,14 @@ const view = (state) =>
             <button class="addButton">Add</button>
         </form>  
     </section>
+
     <section >
         <h2>Doing</h2>
         <ul>
             ${state.doingTasks.map(viewTask).join("")}
         </ul>
     </section>
+
     <section >
         <h2>Done</h2>
         <ul>
@@ -161,5 +163,106 @@ const update = {
 }
 
 
+//user
+
+class User {
+    constructor(name, image){
+        this.id = window.crypto.getRandomValues(new Uint8Array(3)).join(""),
+        this.name = name,
+        this.image = image
+    }
+}
+
+
+const viewUser = user => {
+    //split into a new function to show the viewing of task
+    return `<li
+    id="${user.id}"
+    draggable="true" 
+    onclick="app.run('done', ${user.id})"
+    ondragstart="app.run('onDragTask', event)"
+    class=""
+    ><img style="width: 30px; height: 30px; border-radius: 20px;" src="${user.image}" alt="user image"></img>${user.name} 
+    </li>
+    `
+    }
+
+
+const userView = (state) => 
+     `<section>
+        <h2>Users</h2>
+        <ul>
+            ${state.users.map(viewUser).join("")}
+        </ul>
+        <form onsubmit="app.run('add', this);return false;">
+            <input name="user" type="text" required placeholder="add a user" />
+            <input name="image" type="text" required placeholder="add an image" />
+            <button class="addButton">Add</button>
+        </form>  
+    </section>
+    `
+
+
+const updateUser = {
+    add: async (state, form) => {
+        const data = new FormData(form)
+        const user = new User(data.get('user'))
+      
+        const postRequest = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        }
+
+        fetch('/users', postRequest).then(() => app.run('getUsers'))
+        return state
+    },
+
+    deleteUser: (state, id) => {
+    
+        const index = state.users.findIndex(user=> user.id === id)
+        state.users.splice(index,1)
+        return state
+    },
+
+    onDragTask:  (state, event) => {
+        event.dataTransfer.setData('text', event.target.id)
+        return state
+    },
+
+    // onDropDeleteTask: (state, event) => { //THIS IS WORKING
+    //     const id = event.dataTransfer.getData('text')
+    //     console.log(id)
+    //     const index = state.doneTasks.findIndex(task => task.id == id)
+    //     state.doneTasks.splice(index,1)
+    //     return state
+    // },
+    getUsers: async (state) => {
+        state.users = await fetch('/users').then(res => res.json())
+        return state
+    },
+    // getAllTasks: async (state) => {
+    //     state.toDoTasks = await fetch('/toDoTasks').then(res => res.json())
+    //     state.doingTasks = await fetch('/doingtasks').then(res => res.json())
+    //     state.doneTasks = await fetch('/doneTasks').then(res => res.json())
+    //     return state
+    // },
+
+    addTasks: (state, users) => { 
+        state.users = {...state.users, ...users}
+        // console.log(toDoTasks)
+        return state //three dots remove from array concats to antoher array
+    }
+
+}
+
+
+
 app.start('listView', state, view, update)
 app.run('getAllTasks')
+
+
+app.start('userView', state, userView, updateUser)
+app.run('getUsers')
