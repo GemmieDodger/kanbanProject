@@ -136,6 +136,7 @@ app.post('/projects', (req, res) => {
     res.send()
 })
 
+
 app.get('/users', (req, res) => {
     res.send(users)
 })
@@ -150,6 +151,15 @@ app.get('/projects/:id/delete', (req, res) => {
     projects.splice(index, 1)
     res.send()
 })
+app.get('/projects/:id/delete', (req, res) => {
+    const index = projects.findIndex( project => {
+        return project.id == req.params.id
+    }) 
+    projects.splice(index, 1)
+    res.send()
+
+})
+
 
 app.listen(3000, () => {
     console.log('app server running on port', 3000)
