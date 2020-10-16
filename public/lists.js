@@ -37,41 +37,19 @@ const viewTask = task => {
     onclick="app.run('done', ${task.id})"
     ondragstart="app.run('onDragTask', event)"
     class="${task.status === 0 ? '' : 'done'}"
-    >${task.text} 
-        <button class="deleteButton" onclick="app.run('deleteTask', ${task.id})">Delete</button>
+    >${task.text} ${task.status === 1 ? `<button class="deleteButton" onclick="app.run('deleteTask', ${task.id})">Delete</button>` 
+    : ''} 
+        
     </li>
     `
     }
-// const viewDoingTask = task => {
-//     //split into a new function to show the viewing of task
-//     return `<li
-//     id="${task.id}"
-//     draggable="true" 
-//     onclick="app.run('done', ${task.id})"
-//     ondragstart="app.run('onDragTask', event)"
-//     >${task.text}
-//         <button class="deleteButton" onclick="app.run('deleteTask', ${task.id})">Delete</button>
-//     </li>
-//     `
-// }
-// const viewDoneTask = task => {
-//     //split into a new function to show the viewing of task
-//     return `<li
-//     id="${task.id}"
-//     draggable="true" 
-//     onclick="app.run('done', ${task.id})"
-//     ondragstart="app.run('onDragTask', event)"
-//     >${task.text}
-//         <button class="deleteButton" onclick="app.run('deleteTask', ${task.id})">Delete</button>
-//     </li>
-//     `
-// }
+
 
 const view = (state) => 
      `<div id="lists">
-     <section id="toDoList">
+     <section id="toDoList" >
         <h2 class="listHeader">To do list</h2>
-        <ul class="taskLists" ondragover="event.preventDefault()" ondrop="app.run('onDropTask', event)">
+        <ul class="taskLists"  ondragover="event.preventDefault()" ondrop="app.run('onDropTask', event)">
             ${state.toDoTasks.map(viewTask).join("")}
         </ul>
         <form onsubmit="app.run('add', this);return false;">
@@ -80,19 +58,19 @@ const view = (state) =>
         </form>  
     </section>
     <div id="t"></div>
-    <section id="doingList">
+    <section  id="doingList" >
         <h2 class="listHeader">Doing</h2>
-        <ul class="taskLists" ondragover="event.preventDefault()" ondrop="app.run('onDropDoingTask', event)">
+        <ul class="taskLists"ondragover="event.preventDefault()" ondrop="app.run('onDropDoingTask', event)">
             ${state.doingTasks.map(viewTask).join("")}
         </ul>
     </section>
     <div id="t1"></div>
-    <section id="doneList">
+    <section id="doneList" >
         <h2 class="listHeader">Done</h2>
-        <ul class="taskLists" ondragover="event.preventDefault()" ondrop="app.run('onDropTask', event)">
+        <ul class="taskLists" ondragover="event.preventDefault()" ondrop="app.run('onDropDoneTask', event)">
             ${state.doneTasks.map(viewTask).join("")}
         </ul>
-        <button>Delete</button>
+       
         <div class="deleteOnHover" ondragover="event.preventDefault()" ondrop="app.run('onDropDeleteTask', event)">Delete</div>  
     </section>
     </div>
@@ -130,23 +108,40 @@ const update = {
         return state
     },
 
-    onDragToDoTask:  (state, event) => {
-        event.dataTransfer.setData('text', event.target.id)
-        return state
-    },
-
-    onDropDoingTask(state, event) {
+    onDropTask(state, event) {
         const id = event.dataTransfer.getData('text')
         console.log(id)
+        const indexDoing = state.doingTasks.findIndex(task=> task.id === id)
+        const indexDone = state.doneTasks.findIndex(task => task.id === id)
+        if(empty(indexDoing)) {
+            state.doneTasks.splice(indexDone,1)
+            state.doneTasks.push(task)
+        } else {
+            state.doingTasks.splice(index,1)         
+            state.doingTasks.push(task)
+        }
+  
+        return state
+    },
+    onDropDoingTask(state, event) {
+        const id = event.dataTransfer.getData('text')
         const index = state.toDoTasks.findIndex(task=> task.id === id)
         const task = state.toDoTasks.find(task => task.id == id)
-        console.log(id)
         state.toDoTasks.splice(index,1)
         state.doingTasks.push(task)
         return state
     },
+    onDropDoneTask(state, event) {
+        const id = event.dataTransfer.getData('text')
+        const index = state.doingTasks.findIndex(task=> task.id === id)
+        const task = state.doingTasks.find(task => task.id == id)
+        task.status = 1
+        state.doingTasks.splice(index,1)
+        state.doneTasks.push(task)
+        return state
+    },
 
-    onDropDeleteTask: (state, event) => { //THIS IS WORKING
+    onDropDeleteTask: (state, event) => { 
         const id = event.dataTransfer.getData('text')
         console.log(id)
         const index = state.doneTasks.findIndex(task => task.id == id)
@@ -156,12 +151,6 @@ const update = {
     getTasks: async (state) => {
 
         state.toDoTasks = await fetch('/toDoTasks').then(res => res.json())
-        // console.log("to do")
-        // console.log(state.toDoTasks)
-        // console.log("tdoing")
-        // console.log(state.doingTasks)
-        // console.log("done")
-        // console.log(state.doneTasks)
         return state
     },
     getAllTasks: async (state) => {
