@@ -144,7 +144,7 @@ app.get('/users', (req, res) => {
 app.post('/users', (req, res) => {
     users.push(req.body)
     res.send(users)
-
+})
 app.get('/projects/:id/delete', (req, res) => {
     const index = projects.findIndex( project => {
         return project.id == req.params.id
@@ -153,6 +153,7 @@ app.get('/projects/:id/delete', (req, res) => {
     res.send()
 
 })
+
 
 app.listen(3000, () => {
     console.log('app server running on port', 3000)

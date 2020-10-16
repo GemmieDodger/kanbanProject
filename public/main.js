@@ -14,9 +14,11 @@ const view = (state) => `
     <section>
         <h1>Projects</h1>
 <section>
-   ${state.projects.map(project => `<section class="project"><label>${project.text}</label> 
+   ${state.projects.map(project => `<section class="project"><label id="log">${project.text}</label> 
     <button onclick="app.run('doing', ${project.id} )" >${project.doing}</button> 
         <button onclick="app.run('delete', ${project.id} )" >❌</button> 
+        <button onclick="app.run('showEdit', ${project.id} )" >Hide Project Edit</button>
+        <form id="${project.id}" type="hidden"><input  name="projectName" placeholder="Edit name here"><button onclick="app.run('showEdit', ${project.id} )" >Confrim Edit</button></form>
             <br>
 </section>`).join("")}
         </section>
@@ -89,6 +91,16 @@ const update = {
 
         return state 
     },
+
+    showEdit: (state, id, form) => {
+        var x = document.getElementById(id)
+        if (x.style.display === "none") {
+            x.style.display = "block";
+          } else {
+            x.style.display = "none";
+          }
+        },
+
     getProjects: async (state) => {
         state.projects = await fetch('/projects').then(res => res.json())
         return state
