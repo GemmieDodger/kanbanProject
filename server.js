@@ -101,16 +101,16 @@ app.get('/doneTasks', (req, res) => {
 })
 
 app.post('/toDoTasks', (req, res) => {
-    tasks.push(req.body)
-    res.send()
+    toDoTasks.push(req.body)
+    res.send(toDoTasks) //amended GD on error "post-http-localhost3000-upload-500-internal-server-error"
 })
 app.post('/doingTasks', (req, res) => {
-    tasks.push(req.body)
-    res.send()
+    doingTasks.push(req.body)
+    res.send(doingTasks) //amended GD on error "post-http-localhost3000-upload-500-internal-server-error"
 })
 app.post('/doneTasks', (req, res) => {
-    tasks.push(req.body)
-    res.send()
+    doneTasks.push(req.body) //amended GD on error "post-http-localhost3000-upload-500-internal-server-error"
+    res.send(doneTasks)
 })
 
 
