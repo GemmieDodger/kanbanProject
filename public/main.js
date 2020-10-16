@@ -1,8 +1,8 @@
 class Project {
-    constructor (text) {
+    constructor(text) {
         this.id = window.crypto.getRandomValues(new Uint8Array(3)).join("")
         this.text = text
-        this.doing = "Active ✅"
+        this.doing = "Undefined"
     }
 }
 
@@ -18,7 +18,8 @@ const view = (state) => `
     <button onclick="app.run('doing', ${project.id} )" >${project.doing}</button> 
         <button onclick="app.run('delete', ${project.id} )" >❌</button> 
         <button onclick="app.run('showEdit', ${project.id} )" >Hide Project Edit</button>
-        <form id="${project.id}" type="hidden"><input  name="projectName" placeholder="Edit name here"><button onclick="app.run('showEdit', ${project.id} )" >Confrim Edit</button></form>
+        <form onsubmit="app.run('edit', ${project.id}, this ); return false" id="${project.id}" type="hidden"><input  name="text" placeholder="Edit name here">
+        <button >Confrim Edit</button></form>
             <br>
 </section>`).join("")}
         </section>
@@ -60,10 +61,10 @@ const update = {
             }
             count = count + 1
         })
-        
+
         console.log(index)
         fetch(`/projects/${id}/delete`)
-        state.projects.splice(index,1)
+        state.projects.splice(index, 1)
 
         return state
     },
@@ -89,17 +90,35 @@ const update = {
             state.projects[index].doing = "Inactive 😢"
         }
 
-        return state 
+        return state
     },
 
     showEdit: (state, id, form) => {
         var x = document.getElementById(id)
         if (x.style.display === "none") {
             x.style.display = "block";
-          } else {
+        } else {
             x.style.display = "none";
-          }
-        },
+        }
+    },
+
+    edit: async (state, id, form) => {
+        const project = state.projects.find(project => {
+           return project.id == id
+        })
+        const data = new FormData(form)
+        project.text = data.get("text")
+        console.log(project)
+        const postRequest = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(project)
+        }
+        fetch(`/projects/${id}/edit`, postRequest).then(() => app.run('getProjects'))
+        return state
+    },
 
     getProjects: async (state) => {
         state.projects = await fetch('/projects').then(res => res.json())
