@@ -68,30 +68,34 @@ const viewTask = task => {
 // }
 
 const view = (state) => 
-     `<section>
-        <h2>To do list</h2>
-        <ul>
+     `<div id="lists">
+     <section id="toDoList">
+        <h2 class="listHeader">To do list</h2>
+        <ul class="taskLists" ondragover="event.preventDefault()" ondrop="app.run('onDropTask', event)">
             ${state.toDoTasks.map(viewTask).join("")}
         </ul>
         <form onsubmit="app.run('add', this);return false;">
-            <input name="task" placeholder="add a task" />
+            <input name="task" id="taskInput" placeholder="add a task" />
             <button class="addButton">Add</button>
         </form>  
     </section>
-    <section >
-        <h2>Doing</h2>
-        <ul>
+    <div id="t"></div>
+    <section id="doingList">
+        <h2 class="listHeader">Doing</h2>
+        <ul class="taskLists" ondragover="event.preventDefault()" ondrop="app.run('onDropDoingTask', event)">
             ${state.doingTasks.map(viewTask).join("")}
         </ul>
     </section>
-    <section >
-        <h2>Done</h2>
-        <ul>
+    <div id="t1"></div>
+    <section id="doneList">
+        <h2 class="listHeader">Done</h2>
+        <ul class="taskLists" ondragover="event.preventDefault()" ondrop="app.run('onDropTask', event)">
             ${state.doneTasks.map(viewTask).join("")}
         </ul>
         <button>Delete</button>
         <div class="deleteOnHover" ondragover="event.preventDefault()" ondrop="app.run('onDropDeleteTask', event)">Delete</div>  
     </section>
+    </div>
     `
 
 
@@ -116,7 +120,6 @@ const update = {
     },
 
     deleteTask: (state, id) => {
-    
         const index = state.doneTasks.findIndex(element=> element.id === id)
         state.doneTasks.splice(index,1)
         return state
@@ -127,11 +130,27 @@ const update = {
         return state
     },
 
+    onDragToDoTask:  (state, event) => {
+        event.dataTransfer.setData('text', event.target.id)
+        return state
+    },
+
+    onDropDoingTask(state, event) {
+        const id = event.dataTransfer.getData('text')
+        console.log(id)
+        const index = state.toDoTasks.findIndex(task=> task.id === id)
+        const task = state.toDoTasks.find(task => task.id == id)
+        console.log(id)
+        state.toDoTasks.splice(index,1)
+        state.doingTasks.push(task)
+        return state
+    },
+
     onDropDeleteTask: (state, event) => { //THIS IS WORKING
         const id = event.dataTransfer.getData('text')
         console.log(id)
         const index = state.doneTasks.findIndex(task => task.id == id)
-        state.doneTasks.splice(index,1)
+        state.doneTasks.splice(index, 1)
         return state
     },
     getTasks: async (state) => {
