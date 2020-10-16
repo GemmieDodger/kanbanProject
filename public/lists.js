@@ -99,6 +99,7 @@ const update = {
 
     deleteTask: (state, id) => {
         const index = state.doneTasks.findIndex(element=> element.id === id)
+        fetch(`/projects/${project_id}/tasks/${task.id}`)
         state.doneTasks.splice(index,1)
         return state
     },
@@ -108,21 +109,33 @@ const update = {
         return state
     },
 
-    onDropTask(state, event) {
-        const id = event.dataTransfer.getData('text')
-        console.log(id)
-        const indexDoing = state.doingTasks.findIndex(task=> task.id === id)
-        const indexDone = state.doneTasks.findIndex(task => task.id === id)
-        if(empty(indexDoing)) {
-            state.doneTasks.splice(indexDone,1)
-            state.doneTasks.push(task)
-        } else {
-            state.doingTasks.splice(index,1)         
-            state.doingTasks.push(task)
-        }
+    // onDropTask(state, event) {
+    //     const id = event.dataTransfer.getData('text')
+    //     const indexDoing = state.doingTasks.findIndex(task=> task.id === id)
+    //     const indexDone = state.doneTasks.findIndex(task => task.id === id)
+    //     console.log('on drop')
+    //     console.log(id)
+    //     console.log(indexDoing)
+    //     console.log(indexDone)
+    //     if(indexDoing) {
+    //         const task = state.doneTasks.find(task => task.id == id)
+    //         state.doneTasks.splice(indexDone,1)
+    //         state.toDoTasks.push(task)
+    //         console.log(doneTasks)
+    //         console.log('to do')
+    //         console.log(toDoTasks)
+    //     } else {
+    //         const task = state.doingTasks.find(task => task.id == id)
+    //         state.doingTasks.splice(index,1)         
+    //         state.toDoTasks.push(task)
+    //         console.log(doneTasks)
+    //         console.log('to do')
+    //         console.log(toDoTasks)
+
+    //     }
   
-        return state
-    },
+    //     return state
+    // },
     onDropDoingTask(state, event) {
         const id = event.dataTransfer.getData('text')
         const index = state.toDoTasks.findIndex(task=> task.id === id)
