@@ -155,6 +155,15 @@ app.get('/projects/:id/delete', (req, res) => {
 })
 
 
+app.post('/projects/:id/edit', async (req, res) => {
+    console.log(req.body)
+    const index = projects.findIndex( project => {
+        return project.id == req.params.id
+    }) 
+    projects[index] = req.body
+    res.redirect(`/`)
+})
+
 app.listen(3000, () => {
     console.log('app server running on port', 3000)
 })
