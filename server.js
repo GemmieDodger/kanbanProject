@@ -18,20 +18,6 @@ const projects = [
     }
 ]
 
-const users = [
-    {
-        id: 1,
-        text: 'User Uno',
-        image: 'https://upload.wikimedia.org/wikipedia/commons/7/76/Boris_Johnson_official_portrait_%28cropped%29.jpg',
-        status: 0
-    },
-    {
-        id: 2,
-        text: 'User Dos',
-        image: 'https://cdn.collider.com/wp-content/uploads/2020/09/borat-movie-social.jpg',
-        status: 0
-    }
-]
 
 const lists = [
     {
@@ -88,6 +74,24 @@ const doneTasks = [
     }
 ]
 
+const users = [
+    {
+        id:1,
+        name: 'Dev',
+        image: '/images/dino3.png'
+    },
+    {
+        id:2,
+        name: 'Ben',
+        image: '/images/dino1.png'
+    },
+    {
+        id:3,
+        name: 'Gemma',
+        image: '/images/dino2.png'
+    }
+]
+
 app.get('/toDoTasks', (req, res) => {
     res.send(toDoTasks)
 })
@@ -130,6 +134,34 @@ app.get('/projects', (req, res) => {
 app.post('/projects', (req, res) => {
     projects.push(req.body)
     res.send()
+})
+
+
+app.get('/users', (req, res) => {
+    res.send(users)
+})
+
+app.post('/users', (req, res) => {
+    users.push(req.body)
+    res.send(users)
+})
+app.get('/projects/:id/delete', (req, res) => {
+    const index = projects.findIndex( project => {
+        return project.id == req.params.id
+    }) 
+    projects.splice(index, 1)
+    res.send()
+
+})
+
+
+app.post('/projects/:id/edit', async (req, res) => {
+    console.log(req.body)
+    const index = projects.findIndex( project => {
+        return project.id == req.params.id
+    }) 
+    projects[index] = req.body
+    res.redirect(`/`)
 })
 
 app.listen(3000, () => {

@@ -1,72 +1,133 @@
 class Project {
-}
-const state = {
-    projects: [],
-    dragging: null
+    constructor(text) {
+        this.id = window.crypto.getRandomValues(new Uint8Array(3)).join("")
+        this.text = text
+        this.doing = "Undefined"
+    }
 }
 
-const viewProject = project => {
-    return `<li
-    id="${project.id}"
-    draggable="true"
-        onclick="app.run('done', ${project.id})"
-        ondragstart="app.run('onDragProject', event)
-        class="${project.status === 0 ? '' : 'done'}"
-        >${project.text}
-    </li>`
+const state = {
+    projects: []
 }
+
 const view = (state) => `
     <section>
         <h1>Projects</h1>
-       
-        <ul>
-         ${state.projects.map(project => `<li>${project.text}<button></button></li>`).join("")} ${state.projects.map(project => {
-            if (project.status === 0){
-                return `<button onclick="app.run('done', ${project.id})">✅</button>`
-            } else {
-                return `<button onclick="app.run('delete', ${project.id})">❌</button>`
-            }
-        })}
-    </ul>
-   
+<section>
+   ${state.projects.map(project => `<section class="project"><label id="log">${project.text}</label> 
+    <button onclick="app.run('doing', ${project.id} )" >${project.doing}</button> 
+        <button onclick="app.run('delete', ${project.id} )" >❌</button> 
+        <button onclick="app.run('showEdit', ${project.id} )" >Hide Project Edit</button>
+        <form onsubmit="app.run('edit', ${project.id}, this ); return false" id="${project.id}" type="hidden"><input  name="text" placeholder="Edit name here">
+        <button >Confrim Edit</button></form>
+            <br>
+</section>`).join("")}
+        </section>
     </section>
     <section>
         <form onsubmit="app.run('add', this);return false;">
-            <input name="project" placeholder="add a project" required/>
-            <button class="addBtn">Add</button>
+            <input name="text" placeholder="Add project" />
+            <button>Add</button>
         </form>
-     
     </section>
 `
 const update = {
-    add: (state, form) => {
+    add: async (state, form) => {
+        console.log(state)
         const data = new FormData(form)
-        const project = {
-            id: window.crypto.getRandomValues(new Uint8Array(3)).join(""),
-            text: data.get('project'),
-            status: 0
+        const project = new Project(data.get('text'))
+        const postRequest = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(project)
         }
-        state.projects.push(project)
+        fetch('/projects', postRequest).then(() => app.run('getProjects'))
+        //state.projects.push(project)
         return state
     },
-    done: (state, id) => {
-        const project = state.projects.find(project => {
-            return project.id == id
-        })
-        project.status = 1
-        console.log(project) 
-        return state
-    },
+
     delete: (state, id) => {
-        const project = state.projects.findIndex(project => {
-            return project.id == id
+        var index = 0
+        var count = 0
+
+        console.log(id)
+
+        state.projects.forEach(project => {
+            console.log(project.id)
+            if (id == project.id) {
+                index = count
+            }
+            count = count + 1
         })
-        state.projects.splice(project, 1)
+
+        console.log(index)
+        fetch(`/projects/${id}/delete`)
+        state.projects.splice(index, 1)
+
+        return state
+    },
+
+    doing: (state, id) => {
+        var index = 0
+        var count = 0
+
+        console.log(id)
+
+        state.projects.forEach(project => {
+            console.log(project.id)
+            if (id == project.id) {
+                index = count
+            }
+            count = count + 1
+        })
+
+        if (state.projects[index].doing === "Inactive 😢") {
+            state.projects[index].doing = "Active ✅"
+        }
+        else {
+            state.projects[index].doing = "Inactive 😢"
+        }
+
+        return state
+    },
+
+    showEdit: (state, id, form) => {
+        var x = document.getElementById(id)
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    },
+
+    edit: async (state, id, form) => {
+        const project = state.projects.find(project => {
+           return project.id == id
+        })
+        const data = new FormData(form)
+        project.text = data.get("text")
+        console.log(project)
+        const postRequest = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(project)
+        }
+        fetch(`/projects/${id}/edit`, postRequest).then(() => app.run('getProjects'))
+        return state
+    },
+
+    getProjects: async (state) => {
+        state.projects = await fetch('/projects').then(res => res.json())
         return state
     }
-   
+
+
 }
 
-
-
 app.start('KanbanProject', state, view, update)
+app.run('getProjects')
+
