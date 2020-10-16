@@ -1,0 +1,136 @@
+*
+{
+    padding: 0;
+    margin: 0;
+}
+.mainSection {
+    display: grid;
+    height: 20vh;
+    grid-template-rows: 5% 10%;
+    grid-template-columns: auto auto auto;
+    grid-template-areas:
+        'header header header'
+}
+header{
+    padding: 30px 100px 100px 100px;
+    border: 1px solid black;
+    grid-area: header;
+}
+h1 {
+    border: solid 1px black;
+    padding: 1rem;
+    text-align: center;
+    grid-area: h1;
+}
+
+.listHeader {
+    padding: 10px;
+    text-align: center;
+}
+
+.button1 {
+    position: absolute;
+    left: 55px;
+    top: 40px;
+    padding: 0px;
+}
+
+.button2 {
+    position: absolute;
+    right: 10px;
+    top: 40px;
+    padding: 0px;
+}
+
+.button3 {
+    position: absolute;
+    left: 10px;
+    top: 40px;
+    padding: 0px;
+}
+
+.taskLists{
+    text-align: center;
+}
+
+/* #taskInput {
+    
+} */
+
+#lists {
+    display: grid;
+    height: 50vh;
+    padding: 2rem;
+    grid-template-columns: 30% 5% 30% 5% 30%;
+    grid-template-rows: auto;
+    grid-template-areas:
+        'toDoList t doingList t1 doneList'
+}
+
+#toDoList{
+    padding: 2rem;
+    border: 1px solid black;
+    grid-area: toDoList;
+}
+
+#doingList{
+    padding: 2rem;
+    border: 1px solid black;
+    grid-area: doingList;
+}
+
+#doneList{
+    padding: 2rem;
+    border: 1px solid black;
+    grid-area: doneList;
+}
+
+li {
+    list-style-type: none;
+}
+
+/* @media screen and (min-width: 20em) {
+    #lists {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: none;
+        padding: 1rem;
+        gap: 1rem;
+    }
+    .mainSection {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: none;
+        padding: 1rem;
+        gap: 1rem;
+    }
+}
+
+@media screen and (min-width: 40em) {
+    #lists {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: none;
+        padding: 1rem;
+        gap: 1rem;
+    }
+    .mainSection {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: none;
+        padding: 1rem;
+        gap: 1rem;
+    }
+}
+@media screen and (min-width: 60em) {
+    #lists {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-template-rows: none;
+    }
+    .mainSection {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-template-rows: none;
+    } 
+} */
