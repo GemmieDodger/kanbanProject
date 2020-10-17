@@ -14,6 +14,7 @@ const view = (state) => `
     <section>
         <h1>Projects</h1>
 <section>
+
    ${state.projects.map(project => `<section class="project"><label id="log">${project.text}</label> 
     <button onclick="app.run('doing', ${project.id} )" >${project.doing}</button> 
         <button onclick="app.run('delete', ${project.id} )" >❌</button> 

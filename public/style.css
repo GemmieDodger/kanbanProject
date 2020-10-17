@@ -134,3 +134,13 @@ li {
         grid-template-rows: none;
     } 
 } */
+
+
+/*CSS for wrapping placeholder text*/
+
+::-webkit-input-placeholder { 
+    white-space:pre-line;  
+    position:relative;
+    top:-7px;
+  
+  }
