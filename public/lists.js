@@ -1,18 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-//above for users
-
-
-
 class Task {
     constructor(text){
         this.id = window.crypto.getRandomValues(new Uint8Array(3)).join(""),
@@ -72,7 +57,9 @@ const view = (state) =>
         </ul>
        
         <div class="deleteOnHover" ondragover="event.preventDefault()" ondrop="app.run('onDropDeleteTask', event)">Delete</div>  
-    </section>
+    
+    
+        </section>
     </div>
     `
 
@@ -99,7 +86,7 @@ const update = {
 
     deleteTask: (state, id) => {
         const index = state.doneTasks.findIndex(element=> element.id === id)
-        fetch(`/projects/${project_id}/tasks/${task.id}`)
+        // fetch(`/projects/${project_id}/tasks/${task.id}`)
         state.doneTasks.splice(index,1)
         return state
     },
