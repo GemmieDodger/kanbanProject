@@ -39,36 +39,36 @@ const lists = [
 
 const toDoTasks = [
     {
-        id:1,
+        task_id:1,
         text: 'Complete this task or else',
         status: 0
     },
     {
-        id:2,
+        task_id:2,
         text: 'Get on with this task',
         status: 0
     }
 ]
 const doingTasks = [
     {
-        id:3,
+        task_id:3,
         text: 'Getting through the tasks',
         status: 0
     },
     {
-        id:4,
+        task_id:4,
         text: 'even further through the tasks',
         status: 0
     }
 ]
 const doneTasks = [
     {
-        id:5,
+        task_id:5,
         text: 'Completed task',
         status: 1
     },
     {
-        id:6,
+        task_id:6,
         text: 'Delete this task',
         status: 1
     }
@@ -76,17 +76,17 @@ const doneTasks = [
 
 const users = [
     {
-        id:1,
+        user_id:1,
         name: 'Dev',
         image: '/images/dino3.png'
     },
     {
-        id:2,
+        user_id:2,
         name: 'Ben',
         image: '/images/dino1.png'
     },
     {
-        id:3,
+        user_id:3,
         name: 'Gemma',
         image: '/images/dino2.png'
     }
