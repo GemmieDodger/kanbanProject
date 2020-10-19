@@ -21,7 +21,7 @@ const viewTask = task => {
     draggable="true" 
     onclick="app.run('done', ${task.id})"
     ondragstart="app.run('onDragTask', event)"
-    class="${task.status === 0 ? '' : 'done'}"
+    class="${task.status === 0 ? '' : 'done'} task"
     >${task.text} ${task.status === 1 ? `<button class="deleteButton" onclick="app.run('deleteTask', ${task.id})">Delete</button>` 
     : ''} 
     <div class="dropUser" style="border-style: dashed blue 1px;" ondragover="event.preventDefault()" ondrop="app.run('onDropUser', event)"><h4>drop user</h4></div>   
@@ -32,29 +32,29 @@ const viewTask = task => {
 
 const view = (state) => 
      `<div id="lists">
-     <section id="toDoList" >
+     <div class="card" id="toDoList" >
         <h2 class="listHeader">To do list</h2>
         <ul class="taskLists"  ondragover="event.preventDefault()" ondrop="app.run('onDropTask', event)">
             ${state.toDoTasks.map(viewTask).join("")}
         </ul>
         <form onsubmit="app.run('add', this);return false;">
             <input name="task" id="taskInput" placeholder="add a task" />
-            <button class="addButton">Add</button>
+            <button class="addButton">+ Add</button>
         </form>  
-    </section>
-    <section  id="doingList" >
+    </div>
+    <div class="card"  id="doingList" >
         <h2 class="listHeader">Doing</h2>
         <ul class="taskLists"ondragover="event.preventDefault()" ondrop="app.run('onDropDoingTask', event)">
             ${state.doingTasks.map(viewTask).join("")}
         </ul>
-    </section>
-    <section id="doneList" >
+    </div>
+    <div class="card" id="doneList" >
         <h2 class="listHeader">Done</h2>
         <ul class="taskLists" ondragover="event.preventDefault()" ondrop="app.run('onDropDoneTask', event)">
             ${state.doneTasks.map(viewTask).join("")}
         </ul>
         <div class="deleteOnHover" ondragover="event.preventDefault()" ondrop="app.run('onDropDeleteTask', event)">Delete</div>
-        </section>
+        </div>
     </div>
     `
 
