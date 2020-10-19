@@ -167,7 +167,6 @@ const update = {
         state.users.push(task)
         return state
     }
-
 }
 
 
