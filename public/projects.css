@@ -3,6 +3,11 @@
     margin: 0;
     box-sizing: border-box;
 }
+body {
+    background-image: url("images/background3.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 
 .mainSection {
@@ -48,7 +53,7 @@ h1 {
 }
 
 .div1 {
-    border: 0.5rem solid #000000;
+    border: 0.5rem solid #290c0c;
     border-radius: 1rem;
     background-image: url("/images/2078293.jpg");
     background-repeat: no-repeat;
@@ -63,7 +68,7 @@ h1 {
 .div1 > div {
     border: 2px solid #000000;
     border-radius: 5px;
-    background-color: #f8eef781;
+    background-color: #b6727256;
     padding: 2em;
     color: #000000;
 }
@@ -91,9 +96,7 @@ li {
     padding: 1rem;
     gap: 1rem;
   }
-  article {
-    margin: 0;
-  }
+  
 }
 .input1 {
     border: black 1rem;
@@ -102,6 +105,9 @@ li {
     margin: auto;
     font-size: 16px;
     padding: 1rem;
+  }
+  .input2 {
+      width: 50%;
   }
   .addButton {
     padding: 1rem;
@@ -134,4 +140,5 @@ li {
     transition: 0.4s; 
     background-repeat: no-repeat;
     background-size: cover;
+    color: white;
   }

@@ -1,3 +1,10 @@
 <p>Hello from project.html</p>
 
-<script>const project_id = window.location.pathname.split('/').pop()</script>
+<script>
+let params = (new URL(document.location)).searchParams;
+let id = params.get("id");
+console.log(document.location, id)
+
+
+
+</script>
