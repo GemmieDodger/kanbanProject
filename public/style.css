@@ -122,15 +122,18 @@ input {
     padding: 2rem;
     border: 1px solid black;
     grid-area: toDoList;
+    position: relative;
 }
 
 #doingList{
+    position: relative;
     padding: 2rem;
     border: 1px solid black;
     grid-area: doingList;
 }
 
 #doneList{
+    position: relative;
     padding: 2rem;
     border: 1px solid black;
     grid-area: doneList;

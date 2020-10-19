@@ -18,8 +18,8 @@ const view = (state) => `
    <li id="log">${project.text}
         <button onclick="app.run('delete', ${project.id} )" >❌</button> 
         <button onclick="app.run('showEdit', ${project.id} )" >📝</button>
-        <form onsubmit="app.run('edit', ${project.id}, this ); return false" id="${project.id}" type="hidden"><input class="input2" name="text" placeholder="Edit name here">
-        <button >Confrim Edit</button></form>
+        <form onsubmit="app.run('edit', ${project.id}, this ); return false" id="${project.id}" hidden><input class="input2" name="text" placeholder="Edit name here">
+        <button >Confirm Edit</button></form>
         <a href="/projects/project.html?id=${project.id}">Visit Project</a>
         </li>
         <ul>
