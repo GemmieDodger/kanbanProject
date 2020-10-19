@@ -11,25 +11,28 @@ const state = {
 }
 
 const view = (state) => `
-    <section>
-        <h1>Projects</h1>
-<section>
-   ${state.projects.map(project => `<section class="project"><label id="log">${project.text}</label> 
-    <button onclick="app.run('doing', ${project.id} )" >${project.doing}</button> 
+    <div class="div1">
+<div class="div2">
+
+   ${state.projects.map(project => `<div class="project"><ul>
+   <li id="log">${project.text}
         <button onclick="app.run('delete', ${project.id} )" >❌</button> 
-        <button onclick="app.run('showEdit', ${project.id} )" >Hide Project Edit</button>
+        <button onclick="app.run('showEdit', ${project.id} )" >📝</button>
         <form onsubmit="app.run('edit', ${project.id}, this ); return false" id="${project.id}" type="hidden"><input  name="text" placeholder="Edit name here">
         <button >Confrim Edit</button></form>
+        </li>
+        <ul>
             <br>
-</section>`).join("")}
-        </section>
-    </section>
-    <section>
+</div>`).join("")}
+        </div>
+    </div>
+    <div class="div3">
         <form onsubmit="app.run('add', this);return false;">
             <input name="text" placeholder="Add project" />
             <button>Add</button>
         </form>
-    </section>
+    </div>
+    
 `
 const update = {
     add: async (state, form) => {
@@ -82,13 +85,13 @@ const update = {
             }
             count = count + 1
         })
-
+        /*
         if (state.projects[index].doing === "Inactive 😢") {
             state.projects[index].doing = "Active ✅"
         }
         else {
             state.projects[index].doing = "Inactive 😢"
-        }
+        }*/
 
         return state
     },
