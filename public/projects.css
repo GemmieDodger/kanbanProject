@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 
+
 .mainSection {
     display: grid;
     height: 20vh;
@@ -49,16 +50,20 @@ h1 {
 .div1 {
     border: 0.5rem solid #000000;
     border-radius: 1rem;
-    background-color: #fff4e6;
+    background-image: url("/images/2078293.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
     align-items: center;
     padding: 4rem;
+    width: 90% ; 
+    margin: 0 auto; 
     
 }
 
 .div1 > div {
     border: 2px solid #000000;
     border-radius: 5px;
-    background-color: #d3d2d2;
+    background-color: #f8eef781;
     padding: 2em;
     color: #000000;
 }
@@ -77,3 +82,56 @@ li {
 .div3 {
     text-align: center;
 }
+
+@media screen and  (min-width: 40em) {
+ .div2 {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: none;
+    padding: 1rem;
+    gap: 1rem;
+  }
+  article {
+    margin: 0;
+  }
+}
+.input1 {
+    border: black 1rem;
+    border-radius: 0;
+    width: 80%;
+    margin: auto;
+    font-size: 16px;
+    padding: 1rem;
+  }
+  .addButton {
+    padding: 1rem;
+    width: 5rem;
+    background: #d9d9d9;
+    color: #555;
+    
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 0;
+  }
+
+ 
+
+@media screen and (min-width: 80rem){
+    .div2 {
+      grid-template-columns: auto auto auto;
+    }
+  }
+
+  .project {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+  box-shadow: 0.3rem 0.3rem 2rem 0.5rem rgba(0,0,0,0.25), -0.3rem -0.3rem 2rem 0.5rem rgba(0,0,0,0.22);
+    cursor: pointer;
+    transition: 0.4s; 
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
