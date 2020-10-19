@@ -3,6 +3,11 @@
     margin: 0;
     box-sizing: border-box;
 }
+body {
+    background-image: url("images/background3.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 
 .mainSection {
@@ -63,7 +68,7 @@ h1 {
 .div1 > div {
     border: 2px solid #000000;
     border-radius: 5px;
-    background-color: #3b0f0f56;
+    background-color: #b6727256;
     padding: 2em;
     color: #000000;
 }
@@ -101,6 +106,9 @@ li {
     font-size: 16px;
     padding: 1rem;
   }
+  .input2 {
+      width: 50%;
+  }
   .addButton {
     padding: 1rem;
     width: 5rem;
@@ -132,4 +140,5 @@ li {
     transition: 0.4s; 
     background-repeat: no-repeat;
     background-size: cover;
+    color: white;
   }
