@@ -24,7 +24,7 @@ const viewTask = task => {
     class="${task.status === 0 ? '' : 'done'}"
     >${task.text} ${task.status === 1 ? `<button class="deleteButton" onclick="app.run('deleteTask', ${task.id})">Delete</button>` 
     : ''} 
-        
+    <div class="dropUser" style="border-style: dashed blue 1px;" ondragover="event.preventDefault()" ondrop="app.run('onDropUser', event)"><h4>drop user</h4></div>   
     </li>
     `
     }
@@ -159,6 +159,13 @@ const update = {
         state.toDoTasks = {...state.toDoTasks, ...toDoTasks}
         console.log(toDoTasks)
         return state //three dots remove from array concats to antoher array
+    },
+    onDropUser(state, event) {
+        const id = event.dataTransfer.getData('name')
+        const index = state.users.findIndex(user=> user.id === id)
+        const user = state.users.find(task => task.id == id)
+        state.users.push(task)
+        return state
     }
 
 }
