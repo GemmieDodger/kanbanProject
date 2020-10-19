@@ -51,6 +51,56 @@ h1 {
 
 .taskLists{
     text-align: center;
+    
+}
+
+.task {
+    padding: 10px;
+    border-style: solid grey 1px;
+}
+
+#lists {
+    border: 0.5rem solid #000000;
+    border-radius: 1rem;
+    background-image: url("/images/deerinmountain.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    align-items: center;
+    padding: 4rem;
+    width: 90% ; 
+    margin: 0 auto; 
+    
+}
+
+.addButton {
+    background: transparent;
+    color:lightgoldenrodyellow;
+    font-weight: bolder;
+    outline: none;
+    padding: 5px;
+}
+
+
+input {
+    background: transparent;
+    color: lightgoldenrodyellow;
+    height: 20px;
+}
+
+::-webkit-input-placeholder { /* Edge */
+    color: lightgoldenrodyellow;
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: lightgoldenrodyellow;
+  }
+  
+  ::placeholder {
+    color: lightgoldenrodyellow;
+  }
+
+.addButton:hover {
+    color: lightgreen;
 }
 
 /* #taskInput {
@@ -135,3 +185,34 @@ li {
         grid-template-rows: none;
     } 
 } */
+
+@media screen and  (min-width: 40em) {
+    #lists {
+       display: grid;
+       grid-template-columns: auto auto;
+       grid-template-rows: none;
+       padding: 1rem;
+       gap: 1rem;
+     }
+     .card {
+       margin: 0;
+     }
+   }
+
+   @media screen and (min-width: 80rem){
+    #lists {
+      grid-template-columns: auto auto auto;
+    }
+  }
+
+  .card {
+    margin: 0;
+    width: 80%;
+    height: 80%;
+    border-radius: 1rem;
+    box-shadow: 0.3rem 0.3rem 2rem 0.5rem rgba(0,0,0,0.25), -0.3rem -0.3rem 2rem 0.5rem rgba(0,0,0,0.22);
+    cursor: pointer;
+    transition: 0.4s; 
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
