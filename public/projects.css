@@ -3,8 +3,8 @@
     margin: 0;
     box-sizing: border-box;
 }
-body {
-    background-image: url("images/background3.jpg");
+.bg {
+    background-attachment:fixed; 
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -19,6 +19,8 @@ body {
         'header header header'
 }
 header{
+    color: white;
+    background-color: rgb(5, 5, 5);
     padding: 30px 100px 100px 100px;
     border: 1px solid black;
     grid-area: header;
@@ -55,12 +57,12 @@ h1 {
 .div1 {
     border: 0.5rem solid #290c0c;
     border-radius: 1rem;
-    background-image: url("/images/2078293.jpg");
+    background-color: rgb(0, 0, 0);
     background-repeat: no-repeat;
     background-size: cover;
     align-items: center;
     padding: 4rem;
-    width: 90% ; 
+    width: 60% ; 
     margin: 0 auto; 
     
 }
@@ -68,7 +70,7 @@ h1 {
 .div1 > div {
     border: 2px solid #000000;
     border-radius: 5px;
-    background-color: #b6727256;
+    background-color: #ebd6a856;
     padding: 2em;
     color: #000000;
 }
