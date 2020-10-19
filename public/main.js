@@ -20,6 +20,7 @@ const view = (state) => `
         <button onclick="app.run('showEdit', ${project.id} )" >📝</button>
         <form onsubmit="app.run('edit', ${project.id}, this ); return false" id="${project.id}" type="hidden"><input  name="text" placeholder="Edit name here">
         <button >Confrim Edit</button></form>
+        <a href="/projects/${project.id}/project.html">Visit Project</a>
         </li>
         <ul>
             <br>

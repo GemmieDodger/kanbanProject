@@ -165,6 +165,14 @@ app.post('/projects/:id/edit', async (req, res) => {
     res.redirect(`/`)
 })
 
+//GETTING PROJECT PAGE
+app.get('/projects/:id/project.html', async(req, res) => {
+    const index = projects.findIndex( project => {
+        return project.id == req.params.id
+    }) 
+    res.send('/projects/:id/project.html')
+})
+
 app.listen(3000, () => {
     console.log('app server running on port', 3000)
 })
