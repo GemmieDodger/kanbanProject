@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html>
+<<<<<<< HEAD
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel = "stylesheet" href="/projects.css"/>
@@ -19,4 +20,36 @@
         </main>
         <script src="/main.js"></script> 
     </body>
+=======
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/projects.css" />
+    <script src="https://unpkg.com/apprun/dist/apprun-html.js"></script>
+</head>
+<section class="mainSection">
+    <header>
+        <h1>Projects</h1>
+        <button class="button1" href="/main">Home</button>
+        <button class="button2">Login</button>
+        <button class="button3">Menu</button>
+    </header>
+</section>
+
+<body class="bg">
+    <main id="KanbanProject">
+    </main>
+    <script src="/main.js"></script>
+    <script type="text/javascript">
+        function changeImg(imgNumber) {
+            var myImages = ["images/background1.jpg", "images/background3.jpg", "images/background4.jpg", "images/background5.jpg", "images/background6.jpg"];
+            var imgShown = document.body.style.backgroundImage;
+            var newImgNumber = Math.floor(Math.random() * myImages.length);
+            document.body.style.backgroundImage = 'url(' + myImages[newImgNumber] + ')';
+        }
+        window.onload = changeImg;
+    </script>
+</body>
+
+>>>>>>> 54e1d7a4e2f8120b802af93b280cc96d230864ec
 </html>

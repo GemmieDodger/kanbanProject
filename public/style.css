@@ -113,9 +113,9 @@ input {
     padding: 2rem;
     gap: 1rem;
     grid-template-columns: auto auto auto;
-    grid-template-rows: auto;
+    grid-template-rows: none;
     grid-template-areas:
-        'toDoList doingList doneList'
+        'toDoList doingList doneList';
 }
 
 #toDoList{
@@ -186,33 +186,32 @@ li {
     } 
 } */
 
-@media screen and  (min-width: 40em) {
-    #lists {
-       display: grid;
-       grid-template-columns: auto auto;
-       grid-template-rows: none;
-       padding: 1rem;
-       gap: 1rem;
-     }
-     .card {
-       margin: 0;
-     }
-   }
-
-   @media screen and (min-width: 80rem){
-    #lists {
-      grid-template-columns: auto auto auto;
+@media screen and (min-width: 40em) {
+#lists {
+    margin: 1rem;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    gap: 1rem;
     }
-  }
+}
 
-  .card {
-    margin: 0;
-    width: 80%;
-    height: 80%;
-    border-radius: 1rem;
-    box-shadow: 0.3rem 0.3rem 2rem 0.5rem rgba(0,0,0,0.25), -0.3rem -0.3rem 2rem 0.5rem rgba(0,0,0,0.22);
-    cursor: pointer;
-    transition: 0.4s; 
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+@media screen and (min-width: 60em) {
+#lists {
+    margin: 1rem;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+    gap: 1rem;
+    }
+}
+
+@media screen and (min-width: 80em) {
+#lists {
+    margin: 1rem;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto;
+    gap: 1rem;
+    }
+}
