@@ -37,7 +37,7 @@ const view = (state) =>
         <ul class="taskLists"  ondragover="event.preventDefault()" ondrop="app.run('onDropTask', event)">
             ${state.toDoTasks.map(viewTask).join("")}
         </ul>
-        <form onsubmit="app.run('add', this);return false;">
+        <form id="form1" onsubmit="app.run('add', this);return false;">
             <input name="task" id="taskInput" placeholder="add a task" />
             <button class="addButton">+ Add</button>
         </form>  
@@ -167,7 +167,6 @@ const update = {
         state.users.push(task)
         return state
     }
-
 }
 
 
