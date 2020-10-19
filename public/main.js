@@ -1,6 +1,6 @@
 class Project {
     constructor(text) {
-        this.id = window.crypto.getRandomValues(new Uint8Array(3)).join("")
+        this.project_id = window.crypto.getRandomValues(new Uint8Array(3)).join("")
         this.text = text
         this.doing = "Undefined"
     }
@@ -16,11 +16,11 @@ const view = (state) => `
 
    ${state.projects.map(project => `<div class="project"><ul>
    <li id="log">${project.text}
-        <button onclick="app.run('delete', ${project.id} )" >❌</button> 
-        <button onclick="app.run('showEdit', ${project.id} )" >📝</button>
-        <form onsubmit="app.run('edit', ${project.id}, this ); return false" id="${project.id}" type="hidden"><input class="input2" name="text" placeholder="Edit name here">
+        <button onclick="app.run('delete', ${project.project_id} )" >❌</button> 
+        <button onclick="app.run('showEdit', ${project.project_id} )" >📝</button>
+        <form onsubmit="app.run('edit', ${project.project_id}, this ); return false" id="${project.project_id}" type="hidden"><input class="input2" name="text" placeholder="Edit name here">
         <button >Confrim Edit</button></form>
-        <a href="/projects/project.html?id=${project.id}">Visit Project</a>
+        <a href="/projects/project.html?project_id=${project.project_id}">Visit Project</a>
         </li>
         <ul>
             <br>
@@ -54,36 +54,36 @@ const update = {
         return state
     },
 
-    delete: (state, id) => {
+    delete: (state, project_id) => {
         var index = 0
         var count = 0
 
-        console.log(id)
+        console.log(project_id)
 
         state.projects.forEach(project => {
-            console.log(project.id)
-            if (id == project.id) {
+            console.log(project.project_id)
+            if (project_id == project.project_id) {
                 index = count
             }
             count = count + 1
         })
 
         console.log(index)
-        fetch(`/projects/${id}/delete`)
+        fetch(`/projects/${project_id}/delete`)
         state.projects.splice(index, 1)
 
         return state
     },
 
-    doing: (state, id) => {
+    doing: (state, project_id) => {
         var index = 0
         var count = 0
 
-        console.log(id)
+        console.log(project_id)
 
         state.projects.forEach(project => {
-            console.log(project.id)
-            if (id == project.id) {
+            console.log(project.project_id)
+            if (project_id == project.project_id) {
                 index = count
             }
             count = count + 1
@@ -99,8 +99,8 @@ const update = {
         return state
     },
 
-    showEdit: (state, id, form) => {
-        var x = document.getElementById(id)
+    showEdit: (state, project_id, form) => {
+        var x = document.getElementById(project_id)
         if (x.style.display === "none") {
             x.style.display = "block";
         } else {
@@ -108,9 +108,9 @@ const update = {
         }
     },
 
-    edit: async (state, id, form) => {
+    edit: async (state, project_id, form) => {
         const project = state.projects.find(project => {
-           return project.id == id
+           return project.project_id == project_id
         })
         const data = new FormData(form)
         project.text = data.get("text")
@@ -122,12 +122,13 @@ const update = {
             },
             body: JSON.stringify(project)
         }
-        fetch(`/projects/${id}/edit`, postRequest).then(() => app.run('getProjects'))
+        fetch(`/projects/${project_id}/edit`, postRequest).then(() => app.run('getProjects'))
         return state
     },
 
     getProjects: async (state) => {
         state.projects = await fetch('/projects').then(res => res.json())
+        
         return state
     }
 
