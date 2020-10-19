@@ -79,14 +79,12 @@ const view = (state) =>
             <button class="addButton">Add</button>
         </form>  
     </section>
-    <div id="t"></div>
     <section id="doingList">
         <h2 class="listHeader">Doing</h2>
         <ul class="taskLists" ondragover="event.preventDefault()" ondrop="app.run('onDropDoingTask', event)">
             ${state.doingTasks.map(viewTask).join("")}
         </ul>
     </section>
-    <div id="t1"></div>
     <section id="doneList">
         <h2 class="listHeader">Done</h2>
         <ul class="taskLists" ondragover="event.preventDefault()" ondrop="app.run('onDropTask', event)">
