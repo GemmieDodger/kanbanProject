@@ -29,8 +29,10 @@ const view = (state) => `
     </div>
     <div class="div3">
         <form onsubmit="app.run('add', this);return false;">
-            <input name="text" placeholder="Add project" />
-            <button>Add</button>
+        <br>
+        <br>
+            <input class="input1" name="text" placeholder="Add project" />
+            <button class="addButton">Add</button>
         </form>
     </div>
     

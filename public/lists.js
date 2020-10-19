@@ -81,7 +81,7 @@ const update = {
 
     deleteTask: (state, id) => {
         const index = state.doneTasks.findIndex(element=> element.id === id)
-        // fetch(`/projects/${project_id}/tasks/${task.id}`)
+        //fetch(`/doneDasks/${id}/delete`)
         state.doneTasks.splice(index,1)
         return state
     },

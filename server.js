@@ -146,6 +146,15 @@ app.post('/users', (req, res) => {
     res.send(users)
 })
 
+
+/*app.get('/projects/:id/lists/:id/delete', (req, res) => {
+    const index = doneTasks.findIndex( task => {
+        return task.id == req.params.id
+    }) 
+    doneTasks.splice(index, 1)
+    res.send()
+})*/
+
 app.get('/projects/:id/delete', (req, res) => {
     const index = projects.findIndex( project => {
         return project.id == req.params.id
