@@ -59,11 +59,11 @@ h1 {
 .div1 {
     border: 0.5rem solid #290c0c;
     border-radius: 1rem;
+    background-color: rgb(0, 0, 0);
     background-repeat: no-repeat;
     background-size: cover;
     align-items: center;
-    padding: 2rem black;
-
+    padding: 2rem;
     width: 60% ; 
     margin: 0 auto; 
     
