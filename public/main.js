@@ -13,7 +13,6 @@ const state = {
 const view = (state) => `
     <div class="div1">
 <div class="div2">
-
    ${state.projects.map(project => `<div class="project"><ul>
    <li id="log">${project.text}
         <button onclick="app.run('delete', ${project.project_id} )" >❌</button> 
@@ -137,4 +136,3 @@ const update = {
 
 app.start('KanbanProject', state, view, update)
 app.run('getProjects')
-
