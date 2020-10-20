@@ -120,7 +120,7 @@
                 return state
             },
 
-            deleteTask: (state, task_id) => {
+            deleteTask:  (state, task_id) => {
                 const index = state.doneTasks.findIndex(element => element.task_id === task_id)
                 //fetch(`/projects/${project_id}/lists/${list_id}/delete`)
                 state.doneTasks.splice(index, 1)
