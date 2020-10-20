@@ -31,7 +31,7 @@ const viewTask = task => {
 
 
 const view = (state) => 
-     `<div id="lists">
+     `<div class="lists">
      <div class="card" id="toDoList" >
         <h2 class="listHeader">To do list</h2>
         <ul class="taskLists"  ondragover="event.preventDefault()" ondrop="app.run('onDropTask', event)">

@@ -2,6 +2,8 @@
 {
     padding: 0;
     margin: 0;
+    
+
 }
 
 .bg {
@@ -114,7 +116,7 @@ input {
     color: lightgreen;
 }
 
-#lists {
+.lists {
     display: grid;
     min-height: 50vh;
     padding: 2rem;
@@ -128,25 +130,28 @@ input {
     padding: 4rem;
     width: 90% ; 
     margin: 0 auto; 
-    grid-template-columns: auto auto auto;
-    grid-template-rows: none;
-    grid-template-areas:
-        'toDoList doingList doneList';
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto;
+   
 }
 
 #toDoList{
+    position: unset;
     padding: 2rem;
     border: 1px solid black;
     grid-area: toDoList;
+
 }
 
 #doingList{
+    position: unset;
     padding: 2rem;
     border: 1px solid black;
     grid-area: doingList;
 }
 
 #doneList{
+    position: unset;
     padding: 2rem;
     border: 1px solid black;
     grid-area: doneList;
@@ -169,36 +174,46 @@ li {
     background-size: cover;
 }
 
-@media screen and (min-width: 20em) {
-    #lists {
-        display: grid;
-        grid-template-columns: auto;
-        grid-template-rows: none;
-        padding: 1rem;
-        gap: 1rem;
-    }
 
-}
-@media screen and (min-width: 40em) {
-#lists {
-    margin: 1rem;
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-template-rows: auto;
-    gap: 1rem;
-    }
-}
 
-@media screen and (min-width: 60em) {
-#lists {
-    margin: 1rem;
-    display: grid;
-    grid-template-columns: auto auto auto;
-    grid-template-rows: auto;
-    gap: 1rem;
-    }
-}
 
+
+
+    @media screen and (min-width: 20em) {
+        .lists {
+            display: grid;
+            grid-template-columns: auto;
+            grid-template-rows: none;
+            padding: 1rem;
+            gap: 1rem;
+        }
+    
+    }
+    
+    /*
+    @media screen and (min-width: 40em) {
+        .lists {
+            margin: 1rem;
+            display: grid;
+            grid-template-columns: auto auto;
+            grid-template-rows: auto;
+            gap: 1rem;
+            }
+        }
+
+    @media screen and (min-width: 60em) {
+            .lists {
+                margin: 1rem;
+                display: grid;
+                grid-template-columns: auto auto auto;
+                grid-template-rows: auto;
+                gap: 1rem;
+                }
+                .card {
+                    margin: 0;
+                }
+            }*/
+            
 @keyframes background {
     0%   {background-color:rgb(233, 108, 81); left:0px; top:0px;}
     50%  {background-color:rgb(44, 49, 88); left:200px; top:200px;}
