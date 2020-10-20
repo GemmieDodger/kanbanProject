@@ -321,10 +321,10 @@ app.post('/projects/:project_id/edit', async (req, res) => {
 })
 
 app.get('/projects/:project_id', (req, res) => {
-    const index = projects.findIndex( project => {
+    const project = projects.find( project => {
         return project.project_id == req.params.project_id 
     }) 
-    const project = projects[index]
+   
         
    
     res.send(project)
