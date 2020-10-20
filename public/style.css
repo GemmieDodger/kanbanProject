@@ -63,23 +63,23 @@ h1 {
 }
 
 .lists {
-    display: grid;
-    min-height: 50vh;
-    padding: 2rem;
-    gap: 1rem;
-    border: 0.5rem solid #000000;
+    border: 0.5rem solid #290c0c;
     border-radius: 1rem;
-    background-image: url("/images/deerinmountain.jpg");
+    top: 50%;
+    left: 50%;
     background-repeat: no-repeat;
     background-size: cover;
     align-items: center;
-    padding: 4rem;
-    width: 90% ; 
+    padding: 2rem;
+    width: 80% ; 
     margin: 0 auto; 
-    grid-template-columns: auto;
-    grid-template-rows: auto auto auto;
+    
+    background-image: url("/images/deerinmountain.jpg");
+    background-repeat: no-repeat;
+    
    
 }
+
 .card {
     position: relative;
     margin: 0;
@@ -93,6 +93,25 @@ h1 {
     background-size: cover;
 }
 
+.taskLists{
+    text-align: center;
+    
+}
+
+.task {
+    
+    width: 100%;
+    height: 80%;
+    border-radius: 1rem;
+    border-color: black;
+    cursor: pointer;
+    transition: 0.4s; 
+    background-color: rgba(255, 255, 255, 0.267);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
 .lists {
     float: left;
     width: 33.33%;
@@ -104,6 +123,10 @@ h1 {
     display: table;
     clear: both;
   }
+  
+  li {
+    list-style-type: none;
+}
 
   @media screen and (min-width: 20em) {
     .lists {
@@ -118,23 +141,14 @@ h1 {
 
 @media screen and (min-width: 40em) {
     .lists {
-        margin: 1rem;
-        display: grid;
         grid-template-columns: auto auto;
-        grid-template-rows: auto;
-        gap: 1rem;
+        
         }
     }
 
 @media screen and (min-width: 60em) {
         .lists {
-            margin: 1rem;
-            display: grid;
             grid-template-columns: auto auto auto;
-            grid-template-rows: auto;
-            gap: 1rem;
             }
-            .card {
-                margin: 0;
-            }
+            
         }
