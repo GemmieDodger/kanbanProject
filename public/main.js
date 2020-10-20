@@ -15,11 +15,11 @@ const view = (state) => `
 <div class="div2">
    ${state.projects.map(project => `<div class="project"><ul>
    <li id="log">${project.text}
-        <button onclick="app.run('delete', ${project.id} )" >❌</button> 
-        <button onclick="app.run('showEdit', ${project.id} )" >📝</button>
-        <form onsubmit="app.run('edit', ${project.id}, this ); return false" id="${project.id}" hidden><input class="input2" name="text" placeholder="Edit name here">
+        <button onclick="app.run('delete', ${project.project_id} )" >❌</button> 
+        <button onclick="app.run('showEdit', ${project.project_id} )" >📝</button>
+        <form onsubmit="app.run('edit', ${project.project_id}, this ); return false" id="${project.project_id}" hidden><input class="input2" name="text" placeholder="Edit name here">
         <button >Confirm Edit</button></form>
-        <a href="/projects/project.html?id=${project.id}">Visit Project</a>
+        <a href="/projects/project.html?project_id=${project.project_id}">Visit Project</a>
         </li>
         <ul>
             <br>
