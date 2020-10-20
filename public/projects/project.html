@@ -63,27 +63,32 @@
         }
         const viewList = list => {
     
-                   return `<div class="card" id="toDoList" >
-                        <h1>Hello from JS</h1>
-                        <h1>${list.list_id}</h1><h2 class="listHeader">${list.title}</h2>
+                   return `
+                   <div class="card" id="toDoList" style="width: 100%; height:100%">
+                        <h2 class="listHeader">${list.title}</h2>
                 
                         <ul class="taskLists"  ondragover="event.preventDefault()" ondrop="app.run('onDropTask', event)">
                             ${list.tasks.map(viewTask).join("")}
                         </ul>
-                        <form onsubmit="app.run('add', this);return false;">
-                            <input name="task" id="taskInput" placeholder="add a task" />
-                            <button class="addButton">+ Add</button>
-                        </form>  
-                    </div>`
+                       
+                    </div>
+                    `
                 }
         const view = (state) =>
-            `<div id="lists">
+        `<div class="wrapper">
+            <div class="lists" style="width: 80%">
                
 
                     ${state.lists.map(viewList).join("")}
-                
+                    
+                    <div class="deleteOnHover" ondragover="event.preventDefault()" ondrop="app.run('onDropDeleteTask', event)">Delete</div>
+                    
             </div>
-  
+            <form class="form1" onsubmit="app.run('add', this);return false;">
+                            <input name="task" id="taskInput" placeholder="add a task" />
+                            <button class="addButton">+ Add</button>
+                        </form> 
+                        </div>
     `
 
 
@@ -120,7 +125,7 @@
                 return state
             },
 
-            deleteTask:  (state, task_id) => {
+            deleteTask: (state, task_id) => {
                 const index = state.doneTasks.findIndex(element => element.task_id === task_id)
                 //fetch(`/projects/${project_id}/lists/${list_id}/delete`)
                 state.doneTasks.splice(index, 1)

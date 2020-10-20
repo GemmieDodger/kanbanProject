@@ -1,0 +1,156 @@
+.taskLists{
+    text-align: center;
+    
+}
+
+.task {
+    margin: 1rem;
+    width: 100%;
+    height: 80%;
+    border-radius: 1rem;
+    border-color: black;
+    cursor: pointer;
+    transition: 0.4s; 
+    background-color: rgba(255, 255, 255, 0.267);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#toDoList > #form1 {
+    position: relative;
+    bottom: -1rem;
+}
+
+.addButton {
+    background: transparent;
+    color:lightgoldenrodyellow;
+    font-weight: bolder;
+    outline: none;
+    padding: 5px;
+}
+
+
+input {
+    background: transparent;
+    color: lightgoldenrodyellow;
+    height: 20px;
+}
+
+::-webkit-input-placeholder { /* Edge */
+    color: lightgoldenrodyellow;
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: lightgoldenrodyellow;
+  }
+  
+  ::placeholder {
+    color: lightgoldenrodyellow;
+  }
+
+.addButton:hover {
+    color: lightgreen;
+}
+
+.lists {
+    display: grid;
+    min-height: 50vh;
+    padding: 2rem;
+    gap: 1rem;
+    border: 0.5rem solid #000000;
+    border-radius: 1rem;
+    background-image: url("/images/deerinmountain.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    align-items: center;
+    padding: 4rem;
+    width: 90% ; 
+    margin: 0 auto; 
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto;
+   
+}
+
+#toDoList{
+    position: unset;
+    padding: 2rem;
+    border: 1px solid black;
+    grid-area: toDoList;
+
+}
+
+#doingList{
+    position: unset;
+    padding: 2rem;
+    border: 1px solid black;
+    grid-area: doingList;
+}
+
+#doneList{
+    position: unset;
+    padding: 2rem;
+    border: 1px solid black;
+    grid-area: doneList;
+}
+
+li {
+    list-style-type: none;
+}
+
+.card {
+    position: relative;
+    margin: 0;
+    width: 80%;
+    height: 80%;
+    border-radius: 1rem;
+    box-shadow: 0.3rem 0.3rem 2rem 0.5rem rgba(255, 117, 108, 0.705), -0.3rem -0.3rem 2rem 0.5rem rgba(0,0,0,0.22);
+    cursor: pointer;
+    transition: 0.4s; 
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+
+
+
+
+    @media screen and (min-width: 20em) {
+        .lists {
+            display: grid;
+            grid-template-columns: auto;
+            grid-template-rows: none;
+            padding: 1rem;
+            gap: 1rem;
+        }
+    
+    }
+    /*
+    @media screen and (min-width: 40em) {
+        .lists {
+            margin: 1rem;
+            display: grid;
+            grid-template-columns: auto auto;
+            grid-template-rows: auto;
+            gap: 1rem;
+            }
+        }
+
+    @media screen and (min-width: 60em) {
+            .lists {
+                margin: 1rem;
+                display: grid;
+                grid-template-columns: auto auto auto;
+                grid-template-rows: auto;
+                gap: 1rem;
+                }
+                .card {
+                    margin: 0;
+                }
+            }
+            
+@keyframes background {
+    0%   {background-color:rgb(233, 108, 81); left:0px; top:0px;}
+    50%  {background-color:rgb(44, 49, 88); left:200px; top:200px;}
+    100% {background-color:rgb(233, 108, 81); left:0px; top:0px;}
+  }
